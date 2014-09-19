@@ -14,5 +14,8 @@
         ".travis.yml",
         ".jshintrc",
         ".gitignore"
-    ]
+    ],
+    "dependencies": {
+        "hammerjs" : "~2.0.3"
+    }
 }
