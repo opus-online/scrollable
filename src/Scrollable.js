@@ -24,6 +24,18 @@ define(function (require) {
     }
 
     /**
+     * Forces the focus on a specific element
+     * @param $el jquery dom element
+     */
+    Scrollable.prototype.focus = function ($el) {
+        var left = $el.offset().left;
+        var transformX = this.getTransformX();
+        var windowWidth = $(window).width();
+        var move = (transformX - left) + (windowWidth/2); //Lets position ourselves in the middle of the screen
+        this.move(move);
+    };
+
+    /**
      * Handles moving the items in the frame
      * @param pixels
      */

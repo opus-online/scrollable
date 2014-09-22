@@ -23,7 +23,7 @@ bower install scrollable
     var Scrollable = require('Scrollable/Scrollable');
     var scrollable = new Scrollable({
         selector : '#scroller',
-        loadBefore : function () {
+        loadBefore : function () { //Should return a promise
             var deferred = when.defer();
             scrollable.$ul.prepend('<li>Wat</li>');
             scrollable.$ul.prepend('<li>Wat</li>');
@@ -31,7 +31,7 @@ bower install scrollable
             deferred.resolve();
             return deferred.promise;
         },
-        loadAfter : function () {
+        loadAfter : function () { //Should return a promise
             var deferred = when.defer();
             scrollable.$ul.append('<li>Wat</li>');
             scrollable.$ul.append('<li>Wat</li>');
@@ -135,4 +135,12 @@ bower install scrollable
         background-color: #fafafa;
         font-size: 14px;
     }
+```
+
+
+### Methods
+
+```javascript
+    scroller.focus($el);  // Focus on a specific item
+    scroller.move(offset); // Moves the viewport to the specified offset
 ```
