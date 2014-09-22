@@ -183,7 +183,7 @@ define(function (require) {
                 }
             }
             if ((width - viewPortWidth - loadBeforeReachingEnd) < Math.abs(newX)) { //We start loading at this point
-                if (ev.type == 'panleft') {
+                if (ev.type == 'panleft' && !loadingAfter) {
                     loadingAfter = true;
                     self.loadAfter().finally(function () {
                         self.resetCenter();
