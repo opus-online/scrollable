@@ -3,7 +3,6 @@ define(function (require) {
 
     var $ = require('jquery');
     var Hammer = require('hammerjs');
-
     /**
      * Scrollable
      * @param options
@@ -38,8 +37,9 @@ define(function (require) {
     /**
      * Handles moving the items in the frame
      * @param pixels
+     * @param useTransition
      */
-    Scrollable.prototype.move = function (pixels) {
+    Scrollable.prototype.move = function (pixels, useTransition) {
 
         var css = 'translate(' + (pixels) + 'px, 0)';
         var $ul = this.$ul;
@@ -50,6 +50,12 @@ define(function (require) {
         this.prefixes.forEach(function (prefix) {
             transforms[prefix + 'Transform'] = css;
         });
+        if (useTransition) {
+            transforms['transition'] = '1s ease-in-out';
+        }
+        else {
+            transforms['transition'] = 'initial';
+        }
         $ul.css(transforms);
 
     };
@@ -154,7 +160,7 @@ define(function (require) {
             var width = self.$ul.width();
             var viewPortWidth = $(window).width();
 
-            var deltaX = Math.abs(self.center.x - ev.center.x);
+            var deltaX = Math.abs((self.center.x - ev.center.x) * ev.velocityX);
             self.setCenter(ev.center);
 
 
